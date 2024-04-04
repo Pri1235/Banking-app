@@ -1,0 +1,46 @@
+package com.example.demo.controllers;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.models.Banking;
+import com.example.demo.repo.BankingRepo;
+
+@RestController
+public class BankingController {
+	
+	@Autowired
+	BankingRepo repo;
+	
+	@GetMapping("/customers")
+	public List<Banking> getAllCustomers(){
+		return repo.findAll();
+	}
+	@PostMapping("/customer")
+	public Banking addAccount(@RequestBody Banking b) {
+		return repo.save(b);
+	}
+	@PutMapping("/customer")
+	public Banking updateEmployee(@RequestBody Banking b) {
+		return repo.save(b);
+	}
+	@DeleteMapping("/customer/{id}")
+	public void deleteEmployee(@PathVariable int id) {
+		repo.deleteById(id);
+	}
+	
+	@GetMapping("/customer/{id}")
+	public Optional<Banking> getEmpById(@PathVariable int id){
+		return repo.findById(id);
+	}
+	
+}

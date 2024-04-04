@@ -1,0 +1,11 @@
+package com.example.demo.repo;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.models.Banking;
+
+public interface BankingRepo extends JpaRepository<Banking, Integer> {
+	public Boolean findByAccNO(int acc_no);
+}
